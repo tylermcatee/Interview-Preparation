@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>39E9B873-BCE3-4B21-8389-248128A91CAB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FD4947B25EF606F8E46CFA0134CE52EF669FB90A</key>
+		<string>https://github.com/tylermcatee/Interview-Preparation.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Interview Preparation.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FD4947B25EF606F8E46CFA0134CE52EF669FB90A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/tylermcatee/Interview-Preparation.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FD4947B25EF606F8E46CFA0134CE52EF669FB90A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FD4947B25EF606F8E46CFA0134CE52EF669FB90A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Interview%20Preparation</string>
+		</dict>
+	</array>
+</dict>
+</plist>

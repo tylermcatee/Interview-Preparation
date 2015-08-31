@@ -32,4 +32,40 @@
  */
 - (BOOL)remove:(NSObject *)obj;
 
+/**
+ *  @method inOrderRecursive
+ *  @dicussion recursive implementation of in order traversal
+ */
+- (NSArray *)inOrderRecursive;
+
+/**
+ *  @method preOrderRecursive
+ *  @discussion recursive implementation of pre order traversal
+ */
+- (NSArray *)preOrderRecursive;
+
+/**
+ *  @method postOrderRecursive
+ *  @discussion recursive implementation of post order traversal
+ */
+- (NSArray *)postOrderRecursive;
+
+/**
+ *  @method inOrder
+ *  @dicussion non-recursive implementation of in order traversal
+ */
+- (NSArray *)inOrder;
+
+/**
+ *  @method preOrder
+ *  @discussion non-recursive implementation of pre order traversal
+ */
+- (NSArray *)preOrder;
+
+/**
+ *  @method post
+ *  @discussion non-recursive implementation of post order traversal
+ */
+- (NSArray *)postOrder;
+
 @end

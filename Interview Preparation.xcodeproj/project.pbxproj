@@ -17,6 +17,7 @@
 		8DE6BAC61B93C1D800EB1E7A /* BinaryTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BAC51B93C1D800EB1E7A /* BinaryTreeNode.m */; };
 		8DE6BAC91B93C23D00EB1E7A /* BinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BAC81B93C23D00EB1E7A /* BinaryTree.m */; };
 		8DE6BACC1B93C5E300EB1E7A /* BinaryTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BACB1B93C5E300EB1E7A /* BinaryTreeTests.m */; };
+		8DE6BAD01B93E47A00EB1E7A /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BACF1B93E47A00EB1E7A /* NSMutableArray+Stack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		8DE6BAC71B93C23D00EB1E7A /* BinaryTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryTree.h; sourceTree = "<group>"; };
 		8DE6BAC81B93C23D00EB1E7A /* BinaryTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryTree.m; sourceTree = "<group>"; };
 		8DE6BACB1B93C5E300EB1E7A /* BinaryTreeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryTreeTests.m; sourceTree = "<group>"; };
+		8DE6BACE1B93E47A00EB1E7A /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
+		8DE6BACF1B93E47A00EB1E7A /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 				8DE6BAC51B93C1D800EB1E7A /* BinaryTreeNode.m */,
 				8DE6BAC71B93C23D00EB1E7A /* BinaryTree.h */,
 				8DE6BAC81B93C23D00EB1E7A /* BinaryTree.m */,
+				8DE6BACE1B93E47A00EB1E7A /* NSMutableArray+Stack.h */,
+				8DE6BACF1B93E47A00EB1E7A /* NSMutableArray+Stack.m */,
 			);
 			name = Trees;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE6BAD01B93E47A00EB1E7A /* NSMutableArray+Stack.m in Sources */,
 				8DE6BAC91B93C23D00EB1E7A /* BinaryTree.m in Sources */,
 				8DE6BAA01B93BFA200EB1E7A /* ViewController.m in Sources */,
 				8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */,

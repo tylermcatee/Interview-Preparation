@@ -29,6 +29,8 @@
     [super tearDown];
 }
 
+#pragma mark - Basic Functionality Recursively
+
 - (void)testInsert {
     // Insert A
     [self.tree insert:@"A"];
@@ -101,20 +103,6 @@
     XCTAssertTrue([self.tree contains:@"C"]);
 }
 
-- (void)populateExampleTree {
-    [self.tree insert:@10];
-    [self.tree insert:@5];
-    [self.tree insert:@15];
-    [self.tree insert:@4];
-    [self.tree insert:@7];
-    [self.tree insert:@12];
-    [self.tree insert:@20];
-    [self.tree insert:@6];
-    [self.tree insert:@9];
-    [self.tree insert:@18];
-    [self.tree insert:@25];
-}
-
 - (void)testRemoveWithBothChildren {
     [self populateExampleTree];
     XCTAssertTrue([self.tree contains:@5]);
@@ -129,6 +117,102 @@
     XCTAssertTrue([self.tree contains:@4]);
     XCTAssertTrue([self.tree remove:@4]);
     XCTAssertFalse([self.tree contains:@4]);
+}
+
+#pragma mark - Example Tree
+
+- (void)populateExampleTree {
+    [self.tree insert:@10];
+    [self.tree insert:@5];
+    [self.tree insert:@15];
+    [self.tree insert:@4];
+    [self.tree insert:@7];
+    [self.tree insert:@12];
+    [self.tree insert:@20];
+    [self.tree insert:@6];
+    [self.tree insert:@9];
+    [self.tree insert:@18];
+    [self.tree insert:@25];
+}
+
+- (NSArray *)exampleInOrder {
+    return @[@4, @5, @6, @7, @9, @10, @12, @15, @18, @20, @25];
+}
+
+- (NSArray *)examplePreOrder {
+    return @[@10, @5, @4, @7, @6, @9, @15, @12, @20, @18, @25];
+}
+
+- (NSArray *)examplePostOrder {
+    return @[@4, @6, @9, @7, @5, @12, @18, @25, @20, @15, @10];
+}
+
+#pragma mark - Traversals
+
+- (void)testInOrderRecursiveEmpty {
+    XCTAssertEqualObjects(@[], [self.tree inOrderRecursive]);
+}
+
+- (void)testInOrderRecursive {
+    [self populateExampleTree];
+    NSArray *resultInOrder = [self.tree inOrderRecursive];
+    NSArray *exampleInOrder = [self exampleInOrder];
+    XCTAssertEqualObjects(resultInOrder, exampleInOrder);
+}
+
+- (void)testPreOrderRecursiveEmpty {
+    XCTAssertEqualObjects(@[], [self.tree preOrderRecursive]);
+}
+
+- (void)testPreOrderRecursive {
+    [self populateExampleTree];
+    NSArray *resultPreOrder = [self.tree preOrderRecursive];
+    NSArray *examplePreOrder = [self examplePreOrder];
+    XCTAssertEqualObjects(resultPreOrder, examplePreOrder);
+}
+
+- (void)testPostOrderRecursiveEmpty {
+    XCTAssertEqualObjects(@[], [self.tree postOrderRecursive]);
+}
+
+- (void)testPostOrderRecursive {
+    [self populateExampleTree];
+    NSArray *resultPostOrder = [self.tree postOrderRecursive];
+    NSArray *examplePostOrder = [self examplePostOrder];
+    XCTAssertEqualObjects(resultPostOrder, examplePostOrder);
+}
+
+- (void)testInOrderEmpty {
+    XCTAssertEqualObjects(@[], [self.tree inOrder]);
+}
+
+- (void)testInOrder {
+    [self populateExampleTree];
+    NSArray *resultInOrder = [self.tree inOrder];
+    NSArray *exampleInOrder = [self exampleInOrder];
+    XCTAssertEqualObjects(resultInOrder, exampleInOrder);
+}
+
+- (void)testPreOrderEmpty {
+    XCTAssertEqualObjects(@[], [self.tree preOrder]);
+}
+
+- (void)testPreOrder {
+    [self populateExampleTree];
+    NSArray *resultPreOrder = [self.tree preOrder];
+    NSArray *examplePreOrder = [self examplePreOrder];
+    XCTAssertEqualObjects(resultPreOrder, examplePreOrder);
+}
+
+- (void)testPostOrderEmpty {
+    XCTAssertEqualObjects(@[], [self.tree postOrder]);
+}
+
+- (void)testPostOrder {
+    [self populateExampleTree];
+    NSArray *resultPostOrder = [self.tree postOrder];
+    NSArray *examplePostOrder = [self examplePostOrder];
+    XCTAssertEqualObjects(resultPostOrder, examplePostOrder);
 }
 
 @end

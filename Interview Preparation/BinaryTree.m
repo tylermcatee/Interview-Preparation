@@ -7,6 +7,7 @@
 //
 
 #import "BinaryTree.h"
+#import "NSMutableArray+Stack.h"
 
 @interface NSObject (Compare)
 - (NSComparisonResult)compare:(NSObject *)obj;
@@ -148,6 +149,140 @@
         node = node.rChild;
     }
     return node.obj;
+}
+
+#pragma mark - Traversal
+
+- (NSArray *)inOrderRecursive {
+    if (!self.root) {
+        return @[]; // Base case
+    }
+    return [self _inOrderRecursiveOnNode:self.root];
+}
+
+- (NSArray *)_inOrderRecursiveOnNode:(BinaryTreeNode *)node {
+    NSMutableArray *traversalArray = [NSMutableArray array];
+    if (node.lChild) {
+        [traversalArray addObjectsFromArray:[self _inOrderRecursiveOnNode:node.lChild]];
+    }
+    [traversalArray addObject:node.obj];
+    if (node.rChild) {
+        [traversalArray addObjectsFromArray:[self _inOrderRecursiveOnNode:node.rChild]];
+    }
+    return [traversalArray copy];
+}
+
+- (NSArray *)preOrderRecursive {
+    if (!self.root) {
+        return @[]; // Base case
+    }
+    return [self _preOrderRecursiveOnNode:self.root];
+}
+
+- (NSArray *)_preOrderRecursiveOnNode:(BinaryTreeNode *)node {
+    NSMutableArray *traversalArray = [NSMutableArray array];
+    [traversalArray addObject:node.obj];
+    if (node.lChild) {
+        [traversalArray addObjectsFromArray:[self _preOrderRecursiveOnNode:node.lChild]];
+    }
+    if (node.rChild) {
+        [traversalArray addObjectsFromArray:[self _preOrderRecursiveOnNode:node.rChild]];
+    }
+    return [traversalArray copy];
+}
+
+- (NSArray *)postOrderRecursive {
+    if (!self.root) {
+        return @[]; // Base case
+    }
+    return [self _postOrderRecursiveOnNode:self.root];
+}
+
+- (NSArray *)_postOrderRecursiveOnNode:(BinaryTreeNode *)node {
+    NSMutableArray *traversalArray = [NSMutableArray array];
+    if (node.lChild) {
+        [traversalArray addObjectsFromArray:[self _postOrderRecursiveOnNode:node.lChild]];
+    }
+    if (node.rChild) {
+        [traversalArray addObjectsFromArray:[self _postOrderRecursiveOnNode:node.rChild]];
+    }
+    [traversalArray addObject:node.obj];
+    return [traversalArray copy];
+}
+
+- (NSArray *)inOrder {
+    // Our result array
+    NSMutableArray *traversalArray = [NSMutableArray array];
+    
+    // A stack to go through the tree with
+    NSMutableArray *stack = [NSMutableArray array];
+    BinaryTreeNode *current = self.root;
+    BOOL done = NO;
+    
+    while (!done) {
+        if (current) {
+            [stack push:current];
+            current = current.lChild;
+        } else {
+            if (![stack isEmpty]) {
+                current = [stack pop];
+                [traversalArray addObject:current.obj];
+                current = current.rChild;
+            } else {
+                done = YES;
+            }
+        }
+    }
+    return traversalArray;
+}
+
+- (NSArray *)preOrder {
+    // Our result array
+    NSMutableArray *traversalArray = [NSMutableArray array];
+    
+    NSMutableArray *stack = [NSMutableArray array];
+    BinaryTreeNode *current = self.root;
+    BOOL done = NO;
+    
+    while (!done) {
+        if (current) {
+            [traversalArray addObject:current.obj];
+            [stack push:current];
+            current = current.lChild;
+        } else {
+            if (![stack isEmpty]) {
+                current = [stack pop];
+                current = current.rChild;
+            } else {
+                done = YES;
+            }
+        }
+    }
+    
+    return traversalArray;
+}
+
+- (NSArray *)postOrder {
+    if (!self.root) return @[]; // Base case
+    // Use a result stack
+    NSMutableArray *resultStack = [NSMutableArray array];
+    
+    // A stack to iterate through the tree with
+    NSMutableArray *stack = [NSMutableArray array];
+    [stack push:self.root];
+    
+    while (![stack isEmpty]) {
+        BinaryTreeNode *current = [stack pop];
+        [resultStack push:current.obj];
+        if (current.lChild) {
+            [stack push:current.lChild];
+        }
+        if (current.rChild) {
+            [stack push:current.rChild];
+        }
+    }
+    
+    return resultStack;
 }
 
 @end
