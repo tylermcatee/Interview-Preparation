@@ -723,4 +723,96 @@
     }
 }
 
+- (BinaryTree *)mirrorImage {
+    BinaryTree *mirrorTree = [[BinaryTree alloc] init];
+    if (!self.root) {
+        return mirrorTree;
+    }
+    // Copy over the root
+    BinaryTreeNode *mirrorRoot = [BinaryTreeNode nodeWithObj:self.root.obj];
+    mirrorTree.root = mirrorRoot;
+    // Recursively copy the tree
+    [self _mirrorCopyNode:self.root ontoMirrorNode:mirrorTree.root];
+    return mirrorTree;
+}
+
+- (void)_mirrorCopyNode:(BinaryTreeNode *)node ontoMirrorNode:(BinaryTreeNode *)mirrorNode {
+    if (node.lChild) {
+        mirrorNode.rChild = [BinaryTreeNode nodeWithObj:node.lChild.obj];
+        [self _mirrorCopyNode:node.lChild ontoMirrorNode:mirrorNode.rChild];
+    }
+    if (node.rChild) {
+        mirrorNode.lChild = [BinaryTreeNode nodeWithObj:node.rChild.obj];
+        [self _mirrorCopyNode:node.rChild ontoMirrorNode:mirrorNode.lChild];
+    }
+}
+
+- (void)mirrorTree {
+    if (!self.root) {
+        return;
+    }
+    [self swapChildrenRecursivelyOnNode:self.root];
+}
+
+- (void)swapChildrenRecursivelyOnNode:(BinaryTreeNode *)node {
+    BinaryTreeNode *temp = node.lChild;
+    node.lChild = node.rChild;
+    node.rChild = temp;
+    if (node.lChild) {
+        [self swapChildrenRecursivelyOnNode:node.lChild];
+    }
+    if (node.rChild) {
+        [self swapChildrenRecursivelyOnNode:node.rChild];
+    }
+}
+
+- (void)setAuxPointersToPointToNextRightNode {
+    if (!self.root) return; // Base case
+    NSMutableArray *queue = [NSMutableArray array];
+    BinaryTreeNode *current, *prev;
+    [queue addObject:self.root];
+    while (queue.count > 0) {
+        NSMutableArray *nextLevelQueue = [NSMutableArray array];
+        while (queue.count > 0) {
+            current = [queue firstObject];
+            [queue removeObject:current];
+            if (prev) {
+                prev.aux = current;
+            }
+            if (current.lChild) {
+                [nextLevelQueue addObject:current.lChild];
+            }
+            if (current.rChild) {
+                [nextLevelQueue addObject:current.rChild];
+            }
+            prev = current;
+        }
+        prev = nil;
+        queue = nextLevelQueue;
+    }
+}
+
+- (NSArray *)allRootToLeafPaths {
+    if (!self.root) {
+        return @[];
+    }
+    return [self _allRootToLeafPathsOnNode:self.root withCurrentPath:[NSMutableArray array]];
+}
+
+- (NSArray *)_allRootToLeafPathsOnNode:(BinaryTreeNode *)node withCurrentPath:(NSMutableArray *)currentPath {
+    [currentPath addObject:node.obj];
+    if (!node.lChild && !node.rChild) {
+        // We are a leaf! Return!
+        return @[currentPath];
+    }
+    NSMutableArray *result = [NSMutableArray array];
+    if (node.lChild) {
+        [result addObjectsFromArray:[self _allRootToLeafPathsOnNode:node.lChild withCurrentPath:[currentPath mutableCopy]]];
+    }
+    if (node.rChild) {
+        [result addObjectsFromArray:[self _allRootToLeafPathsOnNode:node.rChild withCurrentPath:[currentPath mutableCopy]]];
+    }
+    return result;
+}
+
 @end

@@ -176,4 +176,31 @@
  */
 - (BOOL)containsTree:(BinaryTree *)tree;
 
+/**
+ *  @method mirrorImage
+ *  @discussion Returns a mirror image of the binary search tree.
+ */
+- (BinaryTree *)mirrorImage;
+
+/**
+ *  @method mirrorTree
+ *  @discussion Sets the current tree to be a mirror of itself.
+ */
+- (void)mirrorTree;
+
+/**
+ *  @method setAuxPointersToPointToNextRightNode
+ *  @discussion Given a binary tree populate each next pointer to point to its next right node.
+ *  http://www.crazyforcode.com/populate-next-pointer-point-next-right-node/
+ *  @warning The solution in the above link only works for complete binary trees, my solution works if the
+ *  tree is incomplete as well.
+ */
+- (void)setAuxPointersToPointToNextRightNode;
+
+/**
+ *  @method allRootToLeafPaths
+ *  @discussion Returns all the root to leaf paths.
+ */
+- (NSArray *)allRootToLeafPaths;
+
 @end

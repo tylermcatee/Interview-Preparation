@@ -122,7 +122,7 @@
 
 #pragma mark - Example Tree
 
-- (void)populateExampleTree {
+- (NSDictionary *)populateExampleTree {
     [self.tree insert:@10];
     [self.tree insert:@5];
     [self.tree insert:@15];
@@ -134,6 +134,20 @@
     [self.tree insert:@9];
     [self.tree insert:@18];
     [self.tree insert:@25];
+    
+    NSMutableDictionary *numberToNodeMap = [NSMutableDictionary dictionary];
+    [numberToNodeMap setObject:self.tree.root forKey:@10];
+    [numberToNodeMap setObject:self.tree.root.lChild forKey:@5];
+    [numberToNodeMap setObject:self.tree.root.rChild forKey:@15];
+    [numberToNodeMap setObject:self.tree.root.lChild.lChild forKey:@4];
+    [numberToNodeMap setObject:self.tree.root.lChild.rChild forKey:@7];
+    [numberToNodeMap setObject:self.tree.root.rChild.lChild forKey:@12];
+    [numberToNodeMap setObject:self.tree.root.rChild.rChild forKey:@20];
+    [numberToNodeMap setObject:self.tree.root.lChild.rChild.lChild forKey:@6];
+    [numberToNodeMap setObject:self.tree.root.lChild.rChild.rChild forKey:@9];
+    [numberToNodeMap setObject:self.tree.root.rChild.rChild.lChild forKey:@18];
+    [numberToNodeMap setObject:self.tree.root.rChild.rChild.rChild forKey:@25];
+    return numberToNodeMap;
 }
 
 - (NSArray *)exampleInOrder {
@@ -492,6 +506,67 @@
     BinaryTree *otherTree = [[BinaryTree alloc] init];
     otherTree.root = self.tree.root.lChild;
     XCTAssertTrue([self.tree containsTree:otherTree]);
+}
+
+- (void)testMirrorImage {
+    [self populateExampleTree];
+    BinaryTree *mirrorTree = [self.tree mirrorImage];
+    XCTAssertEqualObjects(@10, mirrorTree.root.obj);
+    XCTAssertEqualObjects(@5, mirrorTree.root.rChild.obj);
+    XCTAssertEqualObjects(@15, mirrorTree.root.lChild.obj);
+    XCTAssertEqualObjects(@20, mirrorTree.root.lChild.lChild.obj);
+    XCTAssertEqualObjects(@12, mirrorTree.root.lChild.rChild.obj);
+    XCTAssertEqualObjects(@7, mirrorTree.root.rChild.lChild.obj);
+    XCTAssertEqualObjects(@4, mirrorTree.root.rChild.rChild.obj);
+    XCTAssertEqualObjects(@25, mirrorTree.root.lChild.lChild.lChild.obj);
+    XCTAssertEqualObjects(@18, mirrorTree.root.lChild.lChild.rChild.obj);
+    XCTAssertEqualObjects(@9, mirrorTree.root.rChild.lChild.lChild.obj);
+    XCTAssertEqualObjects(@6, mirrorTree.root.rChild.lChild.rChild.obj);
+}
+
+- (void)testMirrorTree {
+    [self populateExampleTree];
+    [self.tree mirrorTree];
+    BinaryTree *mirrorTree = self.tree;
+    XCTAssertEqualObjects(@10, mirrorTree.root.obj);
+    XCTAssertEqualObjects(@5, mirrorTree.root.rChild.obj);
+    XCTAssertEqualObjects(@15, mirrorTree.root.lChild.obj);
+    XCTAssertEqualObjects(@20, mirrorTree.root.lChild.lChild.obj);
+    XCTAssertEqualObjects(@12, mirrorTree.root.lChild.rChild.obj);
+    XCTAssertEqualObjects(@7, mirrorTree.root.rChild.lChild.obj);
+    XCTAssertEqualObjects(@4, mirrorTree.root.rChild.rChild.obj);
+    XCTAssertEqualObjects(@25, mirrorTree.root.lChild.lChild.lChild.obj);
+    XCTAssertEqualObjects(@18, mirrorTree.root.lChild.lChild.rChild.obj);
+    XCTAssertEqualObjects(@9, mirrorTree.root.rChild.lChild.lChild.obj);
+    XCTAssertEqualObjects(@6, mirrorTree.root.rChild.lChild.rChild.obj);
+}
+
+- (BinaryTreeNode *)map:(NSDictionary *)numberToNodeMap node:(NSNumber *)number {
+    id value = [numberToNodeMap objectForKey:number];
+    return (BinaryTreeNode *)value;
+}
+
+- (void)testNextRight {
+    NSDictionary *map = [self populateExampleTree];
+    [self.tree setAuxPointersToPointToNextRightNode];
+    XCTAssertNil([self map:map node:@10].aux);
+    XCTAssertEqualObjects([self map:map node:@5].aux, [self map:map node:@15]);
+    XCTAssertNil([self map:map node:@15].aux);
+    XCTAssertEqualObjects([self map:map node:@4].aux, [self map:map node:@7]);
+    XCTAssertEqualObjects([self map:map node:@7].aux, [self map:map node:@12]);
+    XCTAssertEqualObjects([self map:map node:@12].aux, [self map:map node:@20]);
+    XCTAssertNil([self map:map node:@20].aux);
+    XCTAssertEqualObjects([self map:map node:@6].aux, [self map:map node:@9]);
+    XCTAssertEqualObjects([self map:map node:@9].aux, [self map:map node:@18]);
+    XCTAssertEqualObjects([self map:map node:@18].aux, [self map:map node:@25]);
+    XCTAssertNil([self map:map node:@25].aux);
+}
+
+- (void)testAllRootToLeafPaths {
+    [self populateExampleTree];
+    NSArray *rootToLeafPaths = [self.tree allRootToLeafPaths];
+    NSArray *correct = @[@[@10, @5, @4], @[@10, @5, @7, @6], @[@10, @5, @7, @9], @[@10, @15, @12], @[@10, @15, @20, @18], @[@10, @15, @20, @25]];
+    XCTAssertEqualObjects(rootToLeafPaths, correct);
 }
 
 @end

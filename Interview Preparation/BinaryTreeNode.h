@@ -14,6 +14,9 @@
 @property (nonatomic, strong) BinaryTreeNode *lChild;
 @property (nonatomic, strong) BinaryTreeNode *rChild;
 
+// For any problems that require setting more pointers
+@property (nonatomic, strong) BinaryTreeNode *aux;
+
 + (instancetype)nodeWithObj:(NSObject *)obj;
 
 @end
