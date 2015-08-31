@@ -169,4 +169,11 @@
  */
 - (NSUInteger)diameter;
 
+/**
+ *  @method containsTree:
+ *  @param tree Another BinaryTree that may be a subtree of this tree.
+ *  @discussion Check if tree is a subtree of this BinaryTree.
+ */
+- (BOOL)containsTree:(BinaryTree *)tree;
+
 @end

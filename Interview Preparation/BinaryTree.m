@@ -699,4 +699,28 @@
     return MAX(MAX(leftTree, rightTree), throughNode);
 }
 
+- (BOOL)containsTree:(BinaryTree *)tree {
+    if (!tree.root) {
+        return NO;
+    }
+    return [self _containsTree:tree onNode:self.root];
+}
+
+- (BOOL)_containsTree:(BinaryTree *)tree onNode:(BinaryTreeNode *)node {
+    if (!node) {
+        return NO;
+    }
+    if ([self _node:tree.root isEqualToNode:node]) {
+        return YES;
+    } else {
+        if ([tree.root.obj compare:node.obj] == NSOrderedDescending) {
+            // Tree.root.obj > node.obj, move right
+            return [self _containsTree:tree onNode:node.rChild];
+        } else {
+            // Tree.root.obj < node.obj, move left
+            return [self _containsTree:tree onNode:node.lChild];
+        }
+    }
+}
+
 @end

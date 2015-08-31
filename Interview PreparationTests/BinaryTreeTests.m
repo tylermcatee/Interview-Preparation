@@ -487,4 +487,11 @@
     XCTAssertEqual(9, [self.tree diameter]);
 }
 
+- (void)testContainsTree {
+    [self populateExampleTree];
+    BinaryTree *otherTree = [[BinaryTree alloc] init];
+    otherTree.root = self.tree.root.lChild;
+    XCTAssertTrue([self.tree containsTree:otherTree]);
+}
+
 @end

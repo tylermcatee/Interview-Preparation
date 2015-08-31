@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D7381F11B94F4DD003CA8F7 /* NumberBinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7381F01B94F4DD003CA8F7 /* NumberBinaryTree.m */; };
+		8D7381F81B94F935003CA8F7 /* NumberBinaryTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */; };
 		8DE6BA9A1B93BFA200EB1E7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA991B93BFA200EB1E7A /* main.m */; };
 		8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA9C1B93BFA200EB1E7A /* AppDelegate.m */; };
 		8DE6BAA01B93BFA200EB1E7A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA9F1B93BFA200EB1E7A /* ViewController.m */; };
@@ -31,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D7381EF1B94F4DD003CA8F7 /* NumberBinaryTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberBinaryTree.h; sourceTree = "<group>"; };
+		8D7381F01B94F4DD003CA8F7 /* NumberBinaryTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberBinaryTree.m; sourceTree = "<group>"; };
+		8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberBinaryTreeTests.m; sourceTree = "<group>"; };
 		8DE6BA941B93BFA200EB1E7A /* Interview Preparation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Interview Preparation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE6BA981B93BFA200EB1E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DE6BA991B93BFA200EB1E7A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 			children = (
 				8DE6BAB31B93BFA200EB1E7A /* Interview_PreparationTests.m */,
 				8DE6BACB1B93C5E300EB1E7A /* BinaryTreeTests.m */,
+				8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */,
 				8DE6BAB11B93BFA200EB1E7A /* Supporting Files */,
 			);
 			path = "Interview PreparationTests";
@@ -139,6 +145,8 @@
 				8DE6BAC51B93C1D800EB1E7A /* BinaryTreeNode.m */,
 				8DE6BAC71B93C23D00EB1E7A /* BinaryTree.h */,
 				8DE6BAC81B93C23D00EB1E7A /* BinaryTree.m */,
+				8D7381EF1B94F4DD003CA8F7 /* NumberBinaryTree.h */,
+				8D7381F01B94F4DD003CA8F7 /* NumberBinaryTree.m */,
 				8DE6BACE1B93E47A00EB1E7A /* NSMutableArray+Stack.h */,
 				8DE6BACF1B93E47A00EB1E7A /* NSMutableArray+Stack.m */,
 			);
@@ -248,6 +256,7 @@
 				8DE6BAD01B93E47A00EB1E7A /* NSMutableArray+Stack.m in Sources */,
 				8DE6BAC91B93C23D00EB1E7A /* BinaryTree.m in Sources */,
 				8DE6BAA01B93BFA200EB1E7A /* ViewController.m in Sources */,
+				8D7381F11B94F4DD003CA8F7 /* NumberBinaryTree.m in Sources */,
 				8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */,
 				8DE6BAC61B93C1D800EB1E7A /* BinaryTreeNode.m in Sources */,
 				8DE6BA9A1B93BFA200EB1E7A /* main.m in Sources */,
@@ -259,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE6BACC1B93C5E300EB1E7A /* BinaryTreeTests.m in Sources */,
+				8D7381F81B94F935003CA8F7 /* NumberBinaryTreeTests.m in Sources */,
 				8DE6BAB41B93BFA200EB1E7A /* Interview_PreparationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
