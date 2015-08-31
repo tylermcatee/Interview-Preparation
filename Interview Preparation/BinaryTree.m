@@ -13,12 +13,6 @@
 - (NSComparisonResult)compare:(NSObject *)obj;
 @end
 
-@interface BinaryTree()
-
-@property (nonatomic, strong) BinaryTreeNode *root;
-
-@end
-
 @implementation BinaryTree
 
 #pragma mark - Basic Functionality Recursively
@@ -284,5 +278,225 @@
     
     return resultStack;
 }
+
+#pragma mark - Equality
+
+- (BOOL)isEqual:(BinaryTree *)tree {
+    return [self _node:self.root isEqualToNode:tree.root];
+}
+
+- (BOOL)_node:(BinaryTreeNode *)node isEqualToNode:(BinaryTreeNode *)otherNode {
+    
+    // Check for nil cases
+    if (otherNode && !node) {
+        return NO;
+    } else if (!otherNode && node) {
+        return NO;
+    } else if (!otherNode && !node) {
+        return YES;
+    }
+    
+    if (![node.obj compare:otherNode.obj] == NSOrderedSame) {
+        return NO;
+    }
+    
+    return [self _node:node.lChild isEqualToNode:otherNode.lChild] && [self _node:node.rChild isEqualToNode:otherNode.rChild];
+}
+
+#pragma mark - Verification
+
+- (BOOL)isBinarySearchTree {
+    // Stack
+    NSMutableArray *stack = [NSMutableArray array];
+    BinaryTreeNode *current = self.root;
+    BinaryTreeNode *previous = nil;
+    BOOL done = NO;
+    while (!done) {
+        if (current) {
+            [stack push:current];
+            current = current.lChild;
+        } else {
+            if (![stack isEmpty]) {
+                current = [stack pop];
+                if (previous) {
+                    if ([previous.obj compare:current.obj] == NSOrderedDescending) {
+                        return NO; // Not a binary search tree!
+                    }
+                }
+                previous = current;
+                current = current.rChild;
+            } else {
+                // Done!
+                done = YES;
+            }
+        }
+    }
+    return YES;
+}
+
+#pragma mark - Interview Questions
+
+- (BinaryTreeNode *)nextHighestNodeThan:(BinaryTreeNode *)node {
+    NSMutableArray *stack = [NSMutableArray array];
+    BinaryTreeNode *cursor = self.root;
+    while (cursor) {
+        if ([cursor isEqual:node]) {
+            // We found the goal node!
+            if (cursor.rChild) {
+                // If it has a right child, that will be the next highest
+                return cursor.rChild;
+            } else {
+                // No r child, check the parents for the first one higher than this node
+                BinaryTreeNode *result;
+                while (![stack isEmpty]) {
+                    result = [stack pop];
+                    if ([result.obj compare:node.obj] == NSOrderedDescending) {
+                        return result;
+                    }
+                }
+                return nil; // Not found
+            }
+        } else if ([cursor.obj compare:node.obj] == NSOrderedDescending) {
+            // Cursor.obj > node.obj, need to look left
+            [stack push:cursor];
+            cursor = cursor.lChild;
+        } else {
+            // Cursor.obj < node.obj, need to look right
+            [stack push:cursor];
+            cursor = cursor.rChild;
+        }
+    }
+    return nil; // Not Found
+}
+
+- (BinaryTreeNode *)smallest {
+    if (self.root) {
+        BinaryTreeNode *smallest = self.root;
+        while (smallest.lChild) {
+            smallest = smallest.lChild;
+        }
+        return smallest;
+    } else {
+        return nil;
+    }
+}
+
+- (BinaryTreeNode *)largest {
+    if (self.root) {
+        BinaryTreeNode *largest = self.root;
+        while (largest.rChild) {
+            largest = largest.rChild;
+        }
+        return largest;
+    } else {
+        return nil;
+    }
+}
+
+- (BinaryTreeNode *)lowestCommonAncestorToNode:(BinaryTreeNode *)node andOtherNode:(BinaryTreeNode *)otherNode {
+    BinaryTreeNode *cursor = self.root;
+    while (cursor) {
+        // If both nodes are less than cursor, move left
+        if ([node.obj compare:cursor.obj] == NSOrderedAscending && [otherNode.obj compare:cursor.obj] == NSOrderedAscending) {
+            cursor = cursor.lChild;
+        } else if ([node.obj compare:cursor.obj] == NSOrderedDescending && [otherNode.obj compare:cursor.obj] == NSOrderedDescending) {
+            cursor = cursor.rChild;
+        } else {
+            return cursor;
+        }
+    }
+    // Bad case
+    return nil;
+}
+
+- (BOOL)node:(BinaryTreeNode *)node isCousinOfNode:(BinaryTreeNode *)otherNode {
+    // Get the height and parents of both nodes
+    BinaryTreeNode *cursor, *parent, *otherParent;
+    NSInteger depth = 0, otherDepth = 0;
+    
+    cursor = self.root;
+    while (cursor) {
+        if ([cursor.obj compare:node.obj] == NSOrderedDescending) {
+            // cursor.obj > node.obj, move left
+            parent = cursor;
+            cursor = cursor.lChild;
+            depth += 1;
+        } else if ([cursor.obj compare:node.obj] == NSOrderedAscending) {
+            // cursor.obj < node.obj, move right
+            parent = cursor;
+            cursor = cursor.rChild;
+            depth += 1;
+        } else {
+            break;
+        }
+    }
+    
+    cursor = self.root;
+    while (cursor) {
+        if ([cursor.obj compare:otherNode.obj] == NSOrderedDescending) {
+            // cursor.obj > node.obj, move left
+            otherParent = cursor;
+            cursor = cursor.lChild;
+            otherDepth += 1;
+        } else if ([cursor.obj compare:otherNode.obj] == NSOrderedAscending) {
+            // cursor.obj < node.obj, move right
+            otherParent = cursor;
+            cursor = cursor.rChild;
+            otherDepth += 1;
+        } else {
+            break;
+        }
+    }
+    
+    if (depth != otherDepth) {
+        return NO;
+    }
+    if ([parent isEqual:otherParent]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSArray *)spiralTraversal:(BOOL)leftFirst {
+    if (!self.root) {
+        return @[]; // Base case
+    }
+    NSMutableArray *result = [NSMutableArray array];
+    NSMutableArray *stack1 = [NSMutableArray array];
+    NSMutableArray *stack2 = [NSMutableArray array];
+    
+    if (leftFirst) {
+        [stack1 push:self.root];
+    } else {
+        [stack2 push:self.root];
+    }
+    
+    while (![stack1 isEmpty] || ![stack2 isEmpty]) {
+        
+        while (![stack1 isEmpty]) {
+            BinaryTreeNode *node = [stack1 pop];
+            [result addObject:node.obj];
+            if (node.rChild) {
+                [stack2 push:node.rChild];
+            }
+            if (node.lChild) {
+                [stack2 push:node.lChild];
+            }
+        }
+        
+        while (![stack2 isEmpty]) {
+            BinaryTreeNode *node = [stack2 pop];
+            [result addObject:node.obj];
+            if (node.lChild) {
+                [stack1 push:node.lChild];
+            }
+            if (node.rChild) {
+                [stack1 push:node.rChild];
+            }
+        }
+    }
+    return result;
+}
+
 
 @end

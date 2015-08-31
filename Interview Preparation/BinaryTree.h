@@ -11,6 +11,9 @@
 
 @interface BinaryTree : NSObject
 
+// Only revealed for testing purposes
+@property (nonatomic, strong) BinaryTreeNode *root;
+
 /**
  *  @method insert:
  *  @discussion Inserts an object into the tree. If the object is already contained in the tree,
@@ -67,5 +70,58 @@
  *  @discussion non-recursive implementation of post order traversal
  */
 - (NSArray *)postOrder;
+
+/**
+ *  @method isEqual:
+ *  @discussion Returns whether two trees have equal contents or not.
+ */
+- (BOOL)isEqual:(BinaryTree *)tree;
+
+/**
+ *  @method isBinarySearchTree
+ *  @discussion Returns YES if we are a valid binary search tree and NO if not.
+ */
+- (BOOL)isBinarySearchTree;
+
+/**
+ *  @method nextHighestNodeThan:
+ *  @discussion Given a binary tree node find the next highest node.
+ */
+- (BinaryTreeNode *)nextHighestNodeThan:(BinaryTreeNode *)node;
+
+
+/**
+ *  @method smallest
+ *  @discussion returns the smallest node.
+ */
+- (BinaryTreeNode *)smallest;
+
+/**
+ *  @method largest
+ *  @discussion returns the largest node.
+ */
+- (BinaryTreeNode *)largest;
+
+/**
+ *  @method lowestCommonAncestorToNode:AndOtherNode:
+ *  @param node A node in the tree
+ *  @param otherNode another node in the tree
+ *  @discussion Returns the lowest common ancestor to the two nodes.
+ */
+- (BinaryTreeNode *)lowestCommonAncestorToNode:(BinaryTreeNode *)node andOtherNode:(BinaryTreeNode *)otherNode;
+
+/**
+ *  @method node:isCousinOfNode:
+ *  @discussion http://www.crazyforcode.com/cousin-nodes-binary-tree/
+ */
+- (BOOL)node:(BinaryTreeNode *)node isCousinOfNode:(BinaryTreeNode *)otherNode;
+
+/**
+ *  @method spiralTraversal
+ *  @param leftFirst whether to go left first from the root, or right first.
+ *  @discussion Prints a spiral traversal of the tree. Goes left to right across the 
+ *  levels, alternating, starting at the root and going down.
+ */
+- (NSArray *)spiralTraversal:(BOOL)leftFirst;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BinaryTree.h"
+#import "BinaryTreeNode.h"
 
 @interface BinaryTreeTests : XCTestCase
 
@@ -213,6 +214,146 @@
     NSArray *resultPostOrder = [self.tree postOrder];
     NSArray *examplePostOrder = [self examplePostOrder];
     XCTAssertEqualObjects(resultPostOrder, examplePostOrder);
+}
+
+- (void)testIsEqualYes {
+    [self.tree insert:@"B"];
+    [self.tree insert:@"A"];
+    [self.tree insert:@"C"];
+    
+    BinaryTree *otherTree = [[BinaryTree alloc] init];
+    [otherTree insert:@"B"];
+    [otherTree insert:@"A"];
+    [otherTree insert:@"C"];
+    
+    XCTAssertTrue([self.tree isEqual:otherTree]);
+}
+
+- (void)testIsEqualNo {
+    [self.tree insert:@"A"];
+    [self.tree insert:@"B"];
+    [self.tree insert:@"C"];
+    
+    BinaryTree *otherTree = [[BinaryTree alloc] init];
+    [otherTree insert:@"B"];
+    [otherTree insert:@"A"];
+    [otherTree insert:@"C"];
+    
+    XCTAssertFalse([self.tree isEqual:otherTree]);
+}
+
+- (BinaryTreeNode *)invalidBinaryTreeRoot {
+    BinaryTreeNode *three = [BinaryTreeNode nodeWithObj:@3];
+    BinaryTreeNode *two = [BinaryTreeNode nodeWithObj:@2];
+    BinaryTreeNode *five = [BinaryTreeNode nodeWithObj:@5];
+    three.lChild = two;
+    three.rChild = five;
+    BinaryTreeNode *one = [BinaryTreeNode nodeWithObj:@1];
+    BinaryTreeNode *four = [BinaryTreeNode nodeWithObj:@4];
+    two.lChild = one;
+    two.rChild = four;
+    return three;
+}
+
+- (void)testIsBinarySearchTree {
+    BinaryTree *invalid = [[BinaryTree alloc] init];
+    invalid.root = [self invalidBinaryTreeRoot];
+    XCTAssertFalse([invalid isBinarySearchTree]);
+}
+
+- (void)testValidBinarySearchTree {
+    [self populateExampleTree];
+    XCTAssertTrue([self.tree isBinarySearchTree]);
+}
+
+- (void)testNextHighestWithoutRChild {
+    [self populateExampleTree];
+    // Get the '9'
+    BinaryTreeNode *nineNode = self.tree.root.lChild.rChild.rChild;
+    // Get the '10'
+    BinaryTreeNode *tenNode = self.tree.root;
+    // Check next highest
+    XCTAssertEqual(tenNode, [self.tree nextHighestNodeThan:nineNode]);
+}
+
+- (void)testNextHighestWithRChild {
+    [self populateExampleTree];
+    // Get the '7'
+    BinaryTreeNode *sevenNode = self.tree.root.lChild.rChild;
+    // Get the '9'
+    BinaryTreeNode *nineNode = self.tree.root.lChild.rChild.rChild;
+    // Check the next highest
+    XCTAssertEqual(nineNode, [self.tree nextHighestNodeThan:sevenNode]);
+}
+
+- (void)testNextHighestNotInTree {
+    [self populateExampleTree];
+    BinaryTreeNode *newNode = [BinaryTreeNode nodeWithObj:@1];
+    XCTAssertNil([self.tree nextHighestNodeThan:newNode]);
+}
+
+- (void)testNoNextHighest {
+    [self populateExampleTree];
+    // Get the '25' Node
+    BinaryTreeNode *twentyFiveNode = self.tree.root.rChild.rChild.rChild;
+    XCTAssertNil([self.tree nextHighestNodeThan:twentyFiveNode]);
+}
+
+- (void)testLowestCommonAncestor {
+    [self populateExampleTree];
+    // Get the '6'
+    BinaryTreeNode *sixNode = self.tree.root.lChild.rChild.lChild;
+    // Get the '7'
+    BinaryTreeNode *sevenNode = self.tree.root.lChild.rChild;
+    // Get the '9'
+    BinaryTreeNode *nineNode = self.tree.root.lChild.rChild.rChild;
+    // Get the '10'
+    BinaryTreeNode *tenNode = self.tree.root;
+    // Get the '12'
+    BinaryTreeNode *twelveNode = self.tree.root.rChild.lChild;
+    // Get the '15'
+    BinaryTreeNode *fifteenNode = self.tree.root.rChild;
+    // Get the '25' Node
+    BinaryTreeNode *twentyFiveNode = self.tree.root.rChild.rChild.rChild;
+
+    XCTAssertEqual(sevenNode, [self.tree lowestCommonAncestorToNode:sixNode andOtherNode:nineNode]);
+    XCTAssertEqual(tenNode, [self.tree lowestCommonAncestorToNode:tenNode andOtherNode:twentyFiveNode]);
+    XCTAssertEqual(tenNode, [self.tree lowestCommonAncestorToNode:nineNode andOtherNode:twentyFiveNode]);
+    XCTAssertEqual(fifteenNode, [self.tree lowestCommonAncestorToNode:twelveNode andOtherNode:twentyFiveNode]);
+}
+
+- (void)testCousinsSuccess {
+    [self populateExampleTree];
+    
+    // Get the '9'
+    BinaryTreeNode *nineNode = self.tree.root.lChild.rChild.rChild;
+    // Get the '18'
+    BinaryTreeNode *eighteenNode = self.tree.root.rChild.rChild.lChild;
+    
+    XCTAssertTrue([self.tree node:nineNode isCousinOfNode:eighteenNode]);
+}
+
+- (void)testCousinsFail {
+    [self populateExampleTree];
+    
+    // Get the '9'
+    BinaryTreeNode *nineNode = self.tree.root.lChild.rChild.rChild;
+    // Get the '12'
+    BinaryTreeNode *twelveNode = self.tree.root.rChild.lChild;
+    
+    XCTAssertFalse([self.tree node:nineNode isCousinOfNode:twelveNode]);
+}
+
+- (void)testSpiralTraversalLeft {
+    [self populateExampleTree];
+    NSArray *correctTraversal = @[@10, @5, @15, @20, @12, @7, @4, @6, @9, @18, @25];
+    XCTAssertEqualObjects(correctTraversal, [self.tree spiralTraversal:YES]);
+}
+
+- (void)testSpiralTraversalRight {
+    [self populateExampleTree];
+    NSArray *correctTraversal = @[@10, @15, @5, @4, @7, @12, @20, @25, @18, @9, @6];
+    XCTAssertEqualObjects(correctTraversal, [self.tree spiralTraversal:NO]);
 }
 
 @end

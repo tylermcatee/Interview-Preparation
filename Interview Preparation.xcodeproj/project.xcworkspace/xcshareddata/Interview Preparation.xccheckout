@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>39E9B873-BCE3-4B21-8389-248128A91CAB</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Interview Preparation</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>FD4947B25EF606F8E46CFA0134CE52EF669FB90A</key>
 		<string>https://github.com/tylermcatee/Interview-Preparation.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Interview Preparation.xcodeproj/project.xcworkspace</string>
+	<string>Interview Preparation.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>FD4947B25EF606F8E46CFA0134CE52EF669FB90A</key>
