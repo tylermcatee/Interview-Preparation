@@ -132,4 +132,41 @@
  */
 - (NSArray *)spiralTraversalRecursive:(BOOL)leftFirst;
 
+/**
+ *  @method levelTraversal
+ *  @discussion Does a non-recursive level traversal of the tree
+ */
+- (NSArray *)levelTraversal;
+
+/**
+ *  @method levelTraversalRecursive
+ *  @discussion Does a recursive level traversal of the tree.
+ */
+- (NSArray *)levelTraversalRecursive;
+
+/**
+ *  @method elementsGreaterThan:andSmallerThan:
+ *  @discussion Returns the elements between minimum and larger than maximum, in order.
+ */
+- (NSArray *)elementsGreaterThan:(NSObject *)minimum andSmallerThan:(NSObject *)maximum;
+
+/**
+ *  @method deleteLeaves
+ *  @discussion Deletes all leaves from the tree.
+ */
+- (void)deleteLeaves;
+
+/**
+ *  @method nodesKDistanceFromRoot
+ *  @discussion Return nodes at K distance from root.
+ */
+- (NSArray *)nodesKDistanceFromRoot:(NSUInteger)k;
+
+/**
+ *  @method diameter
+ *  @discussion Returns the diameter of the tree.
+ *  http://www.crazyforcode.com/diameter-tree/
+ */
+- (NSUInteger)diameter;
+
 @end

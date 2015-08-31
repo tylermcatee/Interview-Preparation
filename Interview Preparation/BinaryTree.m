@@ -531,5 +531,172 @@
     return result;
 }
 
+- (NSArray *)levelTraversal {
+    NSMutableArray *queue = [NSMutableArray array];
+    NSMutableArray *result = [NSMutableArray array];
+    if (self.root) {
+        [queue addObject:self.root];
+    }
+    while (queue.count > 0) {
+        BinaryTreeNode *node = [queue firstObject];
+        [queue removeObject:node];
+        [result addObject:node.obj];
+        if (node.lChild) {
+            [queue addObject:node.lChild];
+        }
+        if (node.rChild) {
+            [queue addObject:node.rChild];
+        }
+    }
+    return result;
+}
+
+- (NSArray *)levelTraversalRecursive {
+    NSUInteger level = 1;
+    NSMutableArray *result = [NSMutableArray array];
+    while (true) {
+        NSArray *levelList = [self _levelTraversalOnNode:self.root withLevel:level];
+        if (levelList.count == 0) {
+            return result;
+        }
+        [result addObjectsFromArray:levelList];
+        level += 1;
+    }
+}
+
+- (NSArray *)_levelTraversalOnNode:(BinaryTreeNode *)node withLevel:(NSUInteger)level {
+    if (!node) {
+        return @[];
+    }
+    if (level == 1) {
+        return @[node.obj];
+    }
+    NSMutableArray *result = [NSMutableArray array];
+    [result addObjectsFromArray:[self _levelTraversalOnNode:node.lChild withLevel:level-1]];
+    [result addObjectsFromArray:[self _levelTraversalOnNode:node.rChild withLevel:level-1]];
+    return result;
+}
+
+- (NSArray *)elementsGreaterThan:(NSObject *)minimum andSmallerThan:(NSObject *)maximum {
+    if (!self.root) {
+        return @[]; // Base case
+    }
+    return [self _elementsGreaterThan:minimum andSmallerThan:maximum onNode:self.root];
+}
+
+- (NSArray *)_elementsGreaterThan:(NSObject *)minimum andSmallerThan:(NSObject *)maximum onNode:(BinaryTreeNode *)node {
+    NSMutableArray *result = [NSMutableArray array];
+    BOOL nodeGreaterThanMinimum = ([node.obj compare:minimum] == NSOrderedDescending);
+    BOOL nodeLessThanMaximum = ([node.obj compare:maximum] == NSOrderedAscending);
+    
+    if (node.lChild) {
+        // Only go left if we're still greater than minimum
+        if (nodeGreaterThanMinimum) {
+            [result addObjectsFromArray:[self _elementsGreaterThan:minimum andSmallerThan:maximum onNode:node.lChild]];
+        }
+    }
+    
+    if (nodeGreaterThanMinimum && nodeLessThanMaximum) {
+        // Node.obj is between minimum and maximum, add to result
+        [result addObject:node.obj];
+    }
+    
+    if (node.rChild) {
+        // Only go right if we're still less than maximum
+        if (nodeLessThanMaximum) {
+            [result addObjectsFromArray:[self _elementsGreaterThan:minimum andSmallerThan:maximum onNode:node.rChild]];
+        }
+    }
+    return result;
+}
+
+- (void)deleteLeaves {
+    // If root is nil
+    if (!self.root) {
+        return;
+    }
+    // If root is leaf
+    if ([self nodeIsLeaf:self.root]) {
+        self.root = nil;
+        return;
+    }
+    // Otherwise
+    [self _deleteLeavesOnNode:self.root];
+}
+
+- (BOOL)nodeIsLeaf:(BinaryTreeNode *)node {
+    return !node.lChild && !node.rChild;
+}
+
+- (void)_deleteLeavesOnNode:(BinaryTreeNode *)node {
+    if (node.lChild) {
+        if ([self nodeIsLeaf:node.lChild]) {
+            node.lChild = nil;
+        } else {
+            [self _deleteLeavesOnNode:node.lChild];
+        }
+    }
+    if (node.rChild) {
+        if ([self nodeIsLeaf:node.rChild]) {
+            node.rChild = nil;
+        } else {
+            [self _deleteLeavesOnNode:node.rChild];
+        }
+    }
+}
+
+- (NSArray *)nodesKDistanceFromRoot:(NSUInteger)k {
+    if (!self.root) {
+        return @[]; // Base case
+    }
+    return [self _nodesKDistanceFromRoot:k onNode:self.root];
+}
+
+- (NSArray *)_nodesKDistanceFromRoot:(NSUInteger)k onNode:(BinaryTreeNode *)node {
+    if (k == 0) {
+        return @[node.obj];
+    }
+    NSMutableArray *results = [NSMutableArray array];
+    if (node.lChild) {
+        [results addObjectsFromArray:[self _nodesKDistanceFromRoot:k - 1 onNode:node.lChild]];
+    }
+    if (node.rChild) {
+        [results addObjectsFromArray:[self _nodesKDistanceFromRoot:k - 1 onNode:node.rChild]];
+    }
+    return results;
+}
+
+- (NSUInteger)diameter {
+    if (!self.root) {
+        return 0;
+    }
+    return [self _diameterOnNode:self.root];
+}
+
+- (NSUInteger)_heightOnNode:(BinaryTreeNode *)node {
+    NSUInteger leftHeight = 0;
+    if (node.lChild) {
+        leftHeight = [self _heightOnNode:node.lChild];
+    }
+    NSUInteger rightHeight = 0;
+    if (node.rChild) {
+        rightHeight = [self _heightOnNode:node.rChild];
+    }
+    return 1 + MAX(leftHeight, rightHeight);
+}
+
+- (NSUInteger)_diameterOnNode:(BinaryTreeNode *)node {
+    // Going through this node is just the height of left subtree plus the height of right subtree plus 1
+    NSUInteger throughNode = [self _heightOnNode:node.lChild] + [self _heightOnNode:node.rChild] + 1;
+    NSUInteger leftTree = 0;
+    if (node.lChild) {
+        leftTree = [self _diameterOnNode:node.lChild];
+    }
+    NSUInteger rightTree = 0;
+    if (node.rChild) {
+        rightTree= [self _diameterOnNode:node.rChild];
+    }
+    return MAX(MAX(leftTree, rightTree), throughNode);
+}
 
 @end

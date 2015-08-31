@@ -368,4 +368,123 @@
     XCTAssertEqualObjects(correctTraversal, [self.tree spiralTraversalRecursive:NO]);
 }
 
+- (void)testLevelOrder {
+    [self populateExampleTree];
+    NSArray *correctTraversal = @[@10, @5, @15, @4, @7, @12, @20, @6, @9, @18, @25];
+    XCTAssertEqualObjects(correctTraversal, [self.tree levelTraversal]);
+}
+
+- (void)testLevelOrderRecursive {
+    [self populateExampleTree];
+    NSArray *correctTraversal = @[@10, @5, @15, @4, @7, @12, @20, @6, @9, @18, @25];
+    XCTAssertEqualObjects(correctTraversal, [self.tree levelTraversalRecursive]);
+}
+
+- (void)testBetweenTraversal {
+    [self populateExampleTree];
+    NSArray *betweenFiveAndFifteen = @[@6, @7, @9, @10, @12];
+    XCTAssertEqualObjects(betweenFiveAndFifteen, [self.tree elementsGreaterThan:@5 andSmallerThan:@15]);
+    NSArray *betweenOneAndTwentySix = @[@4, @5, @6, @7, @9, @10, @12, @15, @18, @20, @25];
+    XCTAssertEqualObjects(betweenOneAndTwentySix, [self.tree elementsGreaterThan:@1 andSmallerThan:@26]);
+    NSArray *betweenTwelveAndTwenty = @[@15, @18];
+    XCTAssertEqualObjects(betweenTwelveAndTwenty, [self.tree elementsGreaterThan:@12 andSmallerThan:@20]);
+}
+
+- (void)testEdgeCasesBetweenTraversal {
+    [self populateExampleTree];
+    XCTAssertEqualObjects(@[], [self.tree elementsGreaterThan:@1 andSmallerThan:@1]);
+}
+
+- (void)testDeleteLeaves {
+    [self populateExampleTree];
+    
+    XCTAssertTrue([self.tree contains:@4]);
+    XCTAssertTrue([self.tree contains:@6]);
+    XCTAssertTrue([self.tree contains:@9]);
+    XCTAssertTrue([self.tree contains:@12]);
+    XCTAssertTrue([self.tree contains:@18]);
+    XCTAssertTrue([self.tree contains:@25]);
+    [self.tree deleteLeaves];
+    XCTAssertFalse([self.tree contains:@4]);
+    XCTAssertFalse([self.tree contains:@6]);
+    XCTAssertFalse([self.tree contains:@9]);
+    XCTAssertFalse([self.tree contains:@12]);
+    XCTAssertFalse([self.tree contains:@18]);
+    XCTAssertFalse([self.tree contains:@25]);
+    
+    XCTAssertTrue([self.tree contains:@7]);
+    XCTAssertTrue([self.tree contains:@20]);
+    [self.tree deleteLeaves];
+    XCTAssertFalse([self.tree contains:@7]);
+    XCTAssertFalse([self.tree contains:@20]);
+    
+    XCTAssertTrue([self.tree contains:@5]);
+    XCTAssertTrue([self.tree contains:@15]);
+    [self.tree deleteLeaves];
+    XCTAssertFalse([self.tree contains:@5]);
+    XCTAssertFalse([self.tree contains:@15]);
+    
+    XCTAssertTrue([self.tree contains:@10]);
+    [self.tree deleteLeaves];
+    XCTAssertFalse([self.tree contains:@10]);
+}
+
+- (void)testKDistance {
+    [self populateExampleTree];
+    
+    NSArray *zero = @[@10];
+    NSArray *one = @[@5, @15];
+    NSArray *two = @[@4, @7, @12, @20];
+    NSArray *three = @[@6, @9, @18, @25];
+    NSArray *four = @[];
+    
+    XCTAssertEqualObjects(zero, [self.tree nodesKDistanceFromRoot:0]);
+    XCTAssertEqualObjects(one, [self.tree nodesKDistanceFromRoot:1]);
+    XCTAssertEqualObjects(two, [self.tree nodesKDistanceFromRoot:2]);
+    XCTAssertEqualObjects(three, [self.tree nodesKDistanceFromRoot:3]);
+    XCTAssertEqualObjects(four, [self.tree nodesKDistanceFromRoot:4]);
+}
+
+- (void)testDiameterThroughRoot {
+    [self.tree insert:@6];
+    [self.tree insert:@2];
+    [self.tree insert:@7];
+    [self.tree insert:@1];
+    [self.tree insert:@4];
+    [self.tree insert:@8];
+    [self.tree insert:@12];
+    [self.tree insert:@3];
+    [self.tree insert:@5];
+    [self.tree insert:@10];
+    [self.tree insert:@13];
+    [self.tree insert:@9];
+    [self.tree insert:@11];
+    
+    // Diameter is path from 5 or 3 to 10 or 12, through root
+    // = 9
+    XCTAssertEqual(9, [self.tree diameter]);
+}
+
+- (void)testDiameterNotThroughRoot {
+    [self.tree insert:@13];
+    [self.tree insert:@7];
+    [self.tree insert:@14];
+    [self.tree insert:@15];
+    [self.tree insert:@2];
+    [self.tree insert:@8];
+    [self.tree insert:@1];
+    [self.tree insert:@6];
+    [self.tree insert:@10];
+    [self.tree insert:@4];
+    [self.tree insert:@9];
+    [self.tree insert:@11];
+    [self.tree insert:@3];
+    [self.tree insert:@5];
+    [self.tree insert:@12];
+    
+    // Diameter is path from 3 or 5 to 12, not through root
+    // = 9
+    XCTAssertEqual(9, [self.tree diameter]);
+}
+
 @end
