@@ -356,4 +356,16 @@
     XCTAssertEqualObjects(correctTraversal, [self.tree spiralTraversal:NO]);
 }
 
+- (void)testSpiralTraversalRecursiveLeft {
+    [self populateExampleTree];
+    NSArray *correctTraversal = @[@10, @5, @15, @20, @12, @7, @4, @6, @9, @18, @25];
+    XCTAssertEqualObjects(correctTraversal, [self.tree spiralTraversalRecursive:YES]);
+}
+
+- (void)testSpiralTraversalRecursiveRight {
+    [self populateExampleTree];
+    NSArray *correctTraversal = @[@10, @15, @5, @4, @7, @12, @20, @25, @18, @9, @6];
+    XCTAssertEqualObjects(correctTraversal, [self.tree spiralTraversalRecursive:NO]);
+}
+
 @end

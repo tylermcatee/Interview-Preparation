@@ -124,4 +124,12 @@
  */
 - (NSArray *)spiralTraversal:(BOOL)leftFirst;
 
+/**
+ *  @method spiralTraversalRecursive
+ *  @param leftFirst whether to go left first from the root, or right first.
+ *  @discussion Prints a spiral traversal of the tree. Goes left to right across the
+ *  levels, alternating, starting at the root and going down.
+ */
+- (NSArray *)spiralTraversalRecursive:(BOOL)leftFirst;
+
 @end

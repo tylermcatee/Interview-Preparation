@@ -498,5 +498,38 @@
     return result;
 }
 
+- (NSArray *)spiralTraversalRecursive:(BOOL)leftFirst {
+    NSUInteger level = 1;
+    NSMutableArray *result = [NSMutableArray array];
+    while (true) {
+        NSArray *spiralLevel = [self _spiralLevelOnNode:self.root withLevel:level andAlt:leftFirst];
+        if (spiralLevel.count == 0) {
+            return result;
+        }
+        [result addObjectsFromArray:spiralLevel];
+        level += 1;
+        leftFirst = !leftFirst;
+    }
+}
+
+- (NSArray *)_spiralLevelOnNode:(BinaryTreeNode *)node withLevel:(NSUInteger)level andAlt:(BOOL)alt {
+    if (!node) {
+        return @[];
+    }
+    if (level == 1) {
+        return @[node.obj];
+    }
+    
+    NSMutableArray *result = [NSMutableArray array];
+    if (alt) {
+        [result addObjectsFromArray:[self _spiralLevelOnNode:node.rChild withLevel:level-1 andAlt:alt]];
+        [result addObjectsFromArray:[self _spiralLevelOnNode:node.lChild withLevel:level-1 andAlt:alt]];
+    } else {
+        [result addObjectsFromArray:[self _spiralLevelOnNode:node.lChild withLevel:level-1 andAlt:alt]];
+        [result addObjectsFromArray:[self _spiralLevelOnNode:node.rChild withLevel:level-1 andAlt:alt]];
+    }
+    return result;
+}
+
 
 @end
