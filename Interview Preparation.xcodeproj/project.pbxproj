@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D24D8861B9620010078157C /* General.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D24D8851B9620010078157C /* General.m */; };
+		8D24D8881B9620510078157C /* GeneralTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D24D8871B9620510078157C /* GeneralTests.m */; };
+		8D24D88C1B9622EB0078157C /* ListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D24D88B1B9622EB0078157C /* ListNode.m */; };
+		8D24D8951B9627EA0078157C /* LinkedListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D24D8941B9627EA0078157C /* LinkedListTests.m */; };
+		8D24D8981B962C180078157C /* ListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D24D8971B962C180078157C /* ListUtils.m */; };
+		8D43AEBB1B9532C3004F6E90 /* Concurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D43AEBA1B9532C3004F6E90 /* Concurrency.m */; };
+		8D43AEBD1B953349004F6E90 /* ConcurrencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D43AEBC1B953349004F6E90 /* ConcurrencyTests.m */; };
 		8D7381F11B94F4DD003CA8F7 /* NumberBinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7381F01B94F4DD003CA8F7 /* NumberBinaryTree.m */; };
 		8D7381F81B94F935003CA8F7 /* NumberBinaryTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */; };
 		8DE6BA9A1B93BFA200EB1E7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA991B93BFA200EB1E7A /* main.m */; };
@@ -33,6 +40,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D24D8841B9620010078157C /* General.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = General.h; sourceTree = "<group>"; };
+		8D24D8851B9620010078157C /* General.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = General.m; sourceTree = "<group>"; };
+		8D24D8871B9620510078157C /* GeneralTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralTests.m; sourceTree = "<group>"; };
+		8D24D88A1B9622EB0078157C /* ListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNode.h; sourceTree = "<group>"; };
+		8D24D88B1B9622EB0078157C /* ListNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNode.m; sourceTree = "<group>"; };
+		8D24D88E1B96232B0078157C /* NSObject+Compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Compare.h"; sourceTree = "<group>"; };
+		8D24D8941B9627EA0078157C /* LinkedListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedListTests.m; sourceTree = "<group>"; };
+		8D24D8961B962C180078157C /* ListUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListUtils.h; sourceTree = "<group>"; };
+		8D24D8971B962C180078157C /* ListUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListUtils.m; sourceTree = "<group>"; };
+		8D43AEB91B9532C3004F6E90 /* Concurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concurrency.h; sourceTree = "<group>"; };
+		8D43AEBA1B9532C3004F6E90 /* Concurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Concurrency.m; sourceTree = "<group>"; };
+		8D43AEBC1B953349004F6E90 /* ConcurrencyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcurrencyTests.m; sourceTree = "<group>"; };
 		8D7381EF1B94F4DD003CA8F7 /* NumberBinaryTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberBinaryTree.h; sourceTree = "<group>"; };
 		8D7381F01B94F4DD003CA8F7 /* NumberBinaryTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberBinaryTree.m; sourceTree = "<group>"; };
 		8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberBinaryTreeTests.m; sourceTree = "<group>"; };
@@ -76,6 +95,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D24D8831B961FFA0078157C /* General */ = {
+			isa = PBXGroup;
+			children = (
+				8D24D8841B9620010078157C /* General.h */,
+				8D24D8851B9620010078157C /* General.m */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		8D24D8891B9622E20078157C /* Linked List */ = {
+			isa = PBXGroup;
+			children = (
+				8D24D88A1B9622EB0078157C /* ListNode.h */,
+				8D24D88B1B9622EB0078157C /* ListNode.m */,
+				8D24D8961B962C180078157C /* ListUtils.h */,
+				8D24D8971B962C180078157C /* ListUtils.m */,
+			);
+			name = "Linked List";
+			sourceTree = "<group>";
+		};
+		8D24D88D1B96231C0078157C /* Compare */ = {
+			isa = PBXGroup;
+			children = (
+				8D24D88E1B96232B0078157C /* NSObject+Compare.h */,
+			);
+			name = Compare;
+			sourceTree = "<group>";
+		};
+		8D43AEB31B95234A004F6E90 /* Concurrency */ = {
+			isa = PBXGroup;
+			children = (
+				8D43AEB91B9532C3004F6E90 /* Concurrency.h */,
+				8D43AEBA1B9532C3004F6E90 /* Concurrency.m */,
+			);
+			name = Concurrency;
+			sourceTree = "<group>";
+		};
 		8DE6BA8B1B93BFA200EB1E7A = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +153,10 @@
 		8DE6BA961B93BFA200EB1E7A /* Interview Preparation */ = {
 			isa = PBXGroup;
 			children = (
+				8D24D88D1B96231C0078157C /* Compare */,
+				8D24D8891B9622E20078157C /* Linked List */,
+				8D24D8831B961FFA0078157C /* General */,
+				8D43AEB31B95234A004F6E90 /* Concurrency */,
 				8DE6BABD1B93C01D00EB1E7A /* Trees */,
 				8DE6BA9B1B93BFA200EB1E7A /* AppDelegate.h */,
 				8DE6BA9C1B93BFA200EB1E7A /* AppDelegate.m */,
@@ -125,6 +185,9 @@
 				8DE6BAB31B93BFA200EB1E7A /* Interview_PreparationTests.m */,
 				8DE6BACB1B93C5E300EB1E7A /* BinaryTreeTests.m */,
 				8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */,
+				8D43AEBC1B953349004F6E90 /* ConcurrencyTests.m */,
+				8D24D8871B9620510078157C /* GeneralTests.m */,
+				8D24D8941B9627EA0078157C /* LinkedListTests.m */,
 				8DE6BAB11B93BFA200EB1E7A /* Supporting Files */,
 			);
 			path = "Interview PreparationTests";
@@ -254,12 +317,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE6BAD01B93E47A00EB1E7A /* NSMutableArray+Stack.m in Sources */,
+				8D24D8981B962C180078157C /* ListUtils.m in Sources */,
 				8DE6BAC91B93C23D00EB1E7A /* BinaryTree.m in Sources */,
 				8DE6BAA01B93BFA200EB1E7A /* ViewController.m in Sources */,
+				8D24D88C1B9622EB0078157C /* ListNode.m in Sources */,
+				8D43AEBB1B9532C3004F6E90 /* Concurrency.m in Sources */,
 				8D7381F11B94F4DD003CA8F7 /* NumberBinaryTree.m in Sources */,
 				8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */,
 				8DE6BAC61B93C1D800EB1E7A /* BinaryTreeNode.m in Sources */,
 				8DE6BA9A1B93BFA200EB1E7A /* main.m in Sources */,
+				8D24D8861B9620010078157C /* General.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,9 +334,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D24D8881B9620510078157C /* GeneralTests.m in Sources */,
 				8DE6BACC1B93C5E300EB1E7A /* BinaryTreeTests.m in Sources */,
 				8D7381F81B94F935003CA8F7 /* NumberBinaryTreeTests.m in Sources */,
 				8DE6BAB41B93BFA200EB1E7A /* Interview_PreparationTests.m in Sources */,
+				8D24D8951B9627EA0078157C /* LinkedListTests.m in Sources */,
+				8D43AEBD1B953349004F6E90 /* ConcurrencyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

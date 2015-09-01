@@ -8,10 +8,7 @@
 
 #import "BinaryTree.h"
 #import "NSMutableArray+Stack.h"
-
-@interface NSObject (Compare)
-- (NSComparisonResult)compare:(NSObject *)obj;
-@end
+#import "NSObject+Compare.h"
 
 @implementation BinaryTree
 
