@@ -94,4 +94,10 @@
  */
 + (ListNode *)mergeList:(ListNode *)list1 andList:(ListNode *)list2;
 
+/**
+ *  @method does a deep copy of a list that has aux pointers 
+ *  that can point to any other node in the list.
+ */
++ (ListNode *)copyListWithAuxPointers:(ListNode *)list;
+
 @end

@@ -292,4 +292,47 @@
     return list1;
 }
 
++ (ListNode *)copyListWithAuxPointers:(ListNode *)list {
+    if (!list) {
+        return nil; // No list
+    }
+    
+    // First go through and make copies of each node and insert it in between the original list nodes.
+    ListNode *cursor = list;
+    while (cursor) {
+        ListNode *newNode = [ListNode nodeWithObject:cursor.obj];
+        newNode.next = cursor.next;
+        cursor.next = newNode;
+        // Move past the new node
+        cursor = cursor.next.next;
+    }
+    
+    // Now go through and copy the aux pointers.
+    cursor = list;
+    while (cursor) {
+        // Sets the copied nodes aux to the copied version of this nodes aux.
+        cursor.next.aux = cursor.aux.next;
+        cursor = cursor.next.next;
+    }
+    
+    // Now go through and unlink the list.
+    ListNode *newList, *newCursor;
+    cursor = list;
+    while (cursor) {
+        // Grab the new node, add it to the new list
+        if (newCursor) {
+            newCursor.next = cursor.next;
+            newCursor = newCursor.next;
+        } else {
+            newList = cursor.next;
+            newCursor = newList;
+        }
+        // Re-assign the next to where it was.
+        cursor.next = cursor.next.next;
+        cursor = cursor.next;
+    }
+    
+    return newList;
+}
+
 @end

@@ -13,6 +13,9 @@
 @property (nonatomic, strong) NSObject<NSCopying> *obj;
 @property (nonatomic, strong) ListNode *next;
 
+// For some questions
+@property (nonatomic, strong) ListNode *aux;
+
 #pragma mark - Insertion
 
 /**

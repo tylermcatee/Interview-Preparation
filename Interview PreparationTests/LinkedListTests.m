@@ -293,4 +293,37 @@
     XCTAssertEqualObjects(array1, [result asArray]);
 }
 
+- (void)testCopyListWithAuxPointers {
+    NSArray *items = @[@1, @2, @3, @4];
+    self.list = [ListNode listFromArray:items];
+    // Generate the aux shape
+    self.list.aux = self.list.next.next; // 1 -> 3
+    self.list.next.aux = self.list.next.next.next; // 2 -> 4
+    self.list.next.next.aux = self.list.next; // 3 -> 2
+    // Grab the original ListNodes so we can make sure that the operation wasn't destructive
+    ListNode *original1 = self.list;
+    ListNode *original2 = self.list.next;
+    ListNode *original3 = self.list.next.next;
+    ListNode *original4 = self.list.next.next.next;
+    // Create the copied list
+    ListNode *copiedList = [ListUtils copyListWithAuxPointers:self.list];
+    // Make sure we didn't destroy the original list now
+    XCTAssertEqualObjects(original1, self.list);
+    XCTAssertEqualObjects(original2, self.list.next);
+    XCTAssertEqualObjects(original3, self.list.next.next);
+    XCTAssertEqualObjects(original4, self.list.next.next.next);
+    // Now check to see that the copied list is at least the same values
+    XCTAssertEqualObjects(items, [copiedList asArray]);
+    // Now grab the list nodes to check their aux values
+    ListNode *new1 = copiedList;
+    ListNode *new2 = copiedList.next;
+    ListNode *new3 = copiedList.next.next;
+    ListNode *new4 = copiedList.next.next.next;
+    // Check the aux values
+    XCTAssertEqualObjects(new3, new1.aux);
+    XCTAssertEqualObjects(new4, new2.aux);
+    XCTAssertEqualObjects(new2, new3.aux);
+    XCTAssertNil(new4.aux);
+}
+
 @end
