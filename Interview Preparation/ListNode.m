@@ -10,7 +10,11 @@
 
 @implementation ListNode
 
-+ (instancetype)nodeWithObject:(NSObject *)obj {
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@>", self.obj];
+}
+
++ (instancetype)nodeWithObject:(NSObject<NSCopying> *)obj {
     ListNode *listNode = [[ListNode alloc] init];
     listNode.obj = obj;
     return listNode;
@@ -40,9 +44,24 @@
     return [array copy];
 }
 
+- (NSArray *)asReverseArray {
+    return [self _asReverseArrayOnNode:self];
+}
+
+- (NSArray *)_asReverseArrayOnNode:(ListNode *)node {
+    if (!node.next) {
+        return @[node.obj];
+    } else {
+        NSMutableArray *result = [NSMutableArray array];
+        [result addObjectsFromArray:[self _asReverseArrayOnNode:node.next]];
+        [result addObject:node.obj];
+        return result;
+    }
+}
+
 #pragma mark - Insertion
 
-- (ListNode *)pushFront:(NSObject *)obj {
+- (ListNode *)pushFront:(NSObject<NSCopying> *)obj {
     // Copy ourselves to a node after us, then change our obj value
     ListNode *newSecondary = [ListNode nodeWithObject:self.obj];
     newSecondary.next = self.next;
@@ -51,7 +70,7 @@
     return self;
 }
 
-- (ListNode *)pushBack:(NSObject *)obj {
+- (ListNode *)pushBack:(NSObject<NSCopying> *)obj {
     ListNode *cursor = self;
     while (cursor.next) {
         cursor = cursor.next;

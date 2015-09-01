@@ -10,7 +10,7 @@
 
 @interface ListNode : NSObject
 
-@property (nonatomic, strong) NSObject *obj;
+@property (nonatomic, strong) NSObject<NSCopying> *obj;
 @property (nonatomic, strong) ListNode *next;
 
 #pragma mark - Insertion
@@ -29,10 +29,16 @@
 + (instancetype)listFromArray:(NSArray *)array;
 
 /**
- *  @method asArray:
+ *  @method asArray
  *  @discussion Converts the list to an NSArray.
  */
 - (NSArray *)asArray;
+
+/**
+ *  @method asReverseArray
+ *  @discussion Converts the list to an NSArray but with the elements in reverse.
+ */
+- (NSArray *)asReverseArray;
 
 /**
  *  @method pushFront:

@@ -134,8 +134,163 @@
     NSArray *start = @[@1, @2, @3, @4, @5, @6, @7, @8];
     NSArray *expected = @[@1, @2, @5, @6];
     self.list = [ListNode listFromArray:start];
-    [ListUtils repeatedlyDeleteN:2 afterM:2 onList:self.list];
+    self.list = [ListUtils repeatedlyDeleteM:2 afterN:2 onList:self.list];
     XCTAssertEqualObjects(expected, [self.list asArray]);
+}
+
+- (void)testRepeatedlyDeleteOnHead {
+    NSArray *start = @[@1, @2, @3, @4, @5, @6, @7, @8];
+    self.list = [ListNode listFromArray:start];
+    self.list = [ListUtils repeatedlyDeleteM:1 afterN:0 onList:self.list];
+    XCTAssertNil(self.list);
+}
+
+- (void)testRemoveDuplicates {
+    NSArray *start = @[@1, @2, @2, @2, @3, @2, @4, @5, @5, @4, @6];
+    NSArray *expected = @[@1, @2, @3, @4, @5, @6];
+    self.list = [ListNode listFromArray:start];
+    [ListUtils removeDuplicatesFromList:self.list];
+    XCTAssertEqualObjects(expected, [self.list asArray]);
+}
+
+- (void)testRemoveDuplicatesWithoutDictionary {
+    NSArray *start = @[@1, @2, @2, @2, @3, @2, @4, @5, @5, @4, @6];
+    NSArray *expected = @[@1, @2, @3, @4, @5, @6];
+    self.list = [ListNode listFromArray:start];
+    [ListUtils removeDuplicatesFromListWithoutDictionary:self.list];
+    XCTAssertEqualObjects(expected, [self.list asArray]);
+}
+
+- (void)testReverseListEmpty {
+    XCTAssertNil([ListUtils reverseList:self.list]);
+}
+
+- (void)testReverseList {
+    NSArray *start = @[@1, @2, @3, @4];
+    NSArray *expected = @[@4, @3, @2, @1];
+    self.list = [ListNode listFromArray:start];
+    self.list = [ListUtils reverseList:self.list];
+    XCTAssertEqualObjects(expected, [self.list asArray]);
+}
+
+- (void)testReverseListSingle {
+    NSArray *start = @[@1];
+    NSArray *expected = @[@1];
+    self.list = [ListNode listFromArray:start];
+    self.list = [ListUtils reverseList:self.list];
+    XCTAssertEqualObjects(expected, [self.list asArray]);
+}
+
+- (void)testRecursiveReverseListEmpty {
+    XCTAssertNil([ListUtils recursiveReverseList:self.list]);
+}
+
+- (void)testRecursiveReverseListSingle {
+    NSArray *start = @[@1];
+    NSArray *expected = @[@1];
+    self.list = [ListNode listFromArray:start];
+    self.list = [ListUtils recursiveReverseList:self.list];
+    XCTAssertEqualObjects(expected, [self.list asArray]);
+}
+
+- (void)testRecursiveReverseList {
+    NSArray *start = @[@1, @2, @3, @4];
+    NSArray *expected = @[@4, @3, @2, @1];
+    self.list = [ListNode listFromArray:start];
+    self.list = [ListUtils recursiveReverseList:self.list];
+    XCTAssertEqualObjects(expected, [self.list asArray]);
+}
+
+- (void)testAsReverseArray {
+    NSArray *start = @[@1, @2, @3, @4];
+    NSArray *expected = @[@4, @3, @2, @1];
+    self.list = [ListNode listFromArray:start];
+    XCTAssertEqualObjects(expected, [self.list asReverseArray]);
+}
+
+- (void)testReverseEveryK {
+    NSArray *testArray = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10];
+    NSArray *reversed1 = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10];
+    NSArray *reversed2 = @[@2, @1, @4, @3, @6, @5, @8, @7, @10, @9];
+    NSArray *reversed3 = @[@3, @2, @1, @6, @5, @4, @9, @8, @7, @10];
+    NSArray *reversed4 = @[@4, @3, @2, @1, @8, @7, @6, @5, @10, @9];
+    NSArray *reversed5 = @[@5, @4, @3, @2, @1, @10, @9, @8, @7, @6];
+    
+    self.list = [ListNode listFromArray:testArray];
+    XCTAssertEqualObjects(reversed1, [[ListUtils reverseEveryKNodes:1 onList:self.list] asArray]);
+    self.list = [ListNode listFromArray:testArray];
+    XCTAssertEqualObjects(reversed2, [[ListUtils reverseEveryKNodes:2 onList:self.list] asArray]);
+    self.list = [ListNode listFromArray:testArray];
+    XCTAssertEqualObjects(reversed3, [[ListUtils reverseEveryKNodes:3 onList:self.list] asArray]);
+    self.list = [ListNode listFromArray:testArray];
+    XCTAssertEqualObjects(reversed4, [[ListUtils reverseEveryKNodes:4 onList:self.list] asArray]);
+    self.list = [ListNode listFromArray:testArray];
+    XCTAssertEqualObjects(reversed5, [[ListUtils reverseEveryKNodes:5 onList:self.list] asArray]);
+}
+
+- (void)testListIsCircular {
+    NSArray *listItems = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10];
+    self.list = [ListNode listFromArray:listItems];
+    XCTAssertFalse([ListUtils listIsCircular:self.list]);
+    // Make it circular
+    self.list.next.next.next.next.next.next.next.next = self.list.next;
+    XCTAssertTrue([ListUtils listIsCircular:self.list]);
+}
+
+- (void)testRemoveLoopOnList {
+    NSArray *listItems = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10];
+    self.list = [ListNode listFromArray:listItems];
+    XCTAssertFalse([ListUtils listIsCircular:self.list]);
+    // Make it circular
+    self.list.next.next.next.next.next.next.next.next = self.list.next;
+    XCTAssertTrue([ListUtils listIsCircular:self.list]);
+    // Remove loop
+    [ListUtils removeLoopOnList:self.list];
+    XCTAssertFalse([ListUtils listIsCircular:self.list]);
+}
+
+- (void)testMergeListSameLength {
+    NSArray *array1 = @[@1, @2, @3];
+    NSArray *array2 = @[@4, @5, @6];
+    NSArray *expectedResult = @[@1, @4, @2, @5, @3, @6];
+    ListNode *list1 = [ListNode listFromArray:array1];
+    ListNode *list2 = [ListNode listFromArray:array2];
+    ListNode *result = [ListUtils mergeList:list1 andList:list2];
+    XCTAssertEqualObjects(expectedResult, [result asArray]);
+}
+
+- (void)testMergeListsLongerFirst {
+    NSArray *array1 = @[@1, @2, @3, @7, @8, @9];
+    NSArray *array2 = @[@4, @5, @6];
+    NSArray *expectedResult = @[@1, @4, @2, @5, @3, @6, @7, @8, @9];
+    ListNode *list1 = [ListNode listFromArray:array1];
+    ListNode *list2 = [ListNode listFromArray:array2];
+    ListNode *result = [ListUtils mergeList:list1 andList:list2];
+    XCTAssertEqualObjects(expectedResult, [result asArray]);
+}
+
+- (void)testMergeListLongerSecond {
+    NSArray *array1 = @[@1, @2, @3];
+    NSArray *array2 = @[@4, @5, @6, @7, @8, @9];
+    NSArray *expectedResult = @[@1, @4, @2, @5, @3, @6, @7, @8, @9];
+    ListNode *list1 = [ListNode listFromArray:array1];
+    ListNode *list2 = [ListNode listFromArray:array2];
+    ListNode *result = [ListUtils mergeList:list1 andList:list2];
+    XCTAssertEqualObjects(expectedResult, [result asArray]);
+}
+
+- (void)testMergeListNilFirst {
+    NSArray *array2 = @[@4, @5, @6];
+    ListNode *list2 = [ListNode listFromArray:array2];
+    ListNode *result = [ListUtils mergeList:nil andList:list2];
+    XCTAssertEqualObjects(array2, [result asArray]);
+}
+
+- (void)testMergeListNilSecond {
+    NSArray *array1 = @[@1, @2, @3];
+    ListNode *list1 = [ListNode listFromArray:array1];
+    ListNode *result = [ListUtils mergeList:list1 andList:nil];
+    XCTAssertEqualObjects(array1, [result asArray]);
 }
 
 @end
