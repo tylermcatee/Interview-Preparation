@@ -16,6 +16,8 @@
 		8D43AEBD1B953349004F6E90 /* ConcurrencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D43AEBC1B953349004F6E90 /* ConcurrencyTests.m */; };
 		8D7381F11B94F4DD003CA8F7 /* NumberBinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7381F01B94F4DD003CA8F7 /* NumberBinaryTree.m */; };
 		8D7381F81B94F935003CA8F7 /* NumberBinaryTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */; };
+		8D83A5ED1B96BD8500A9C258 /* Arrays.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D83A5EC1B96BD8500A9C258 /* Arrays.m */; };
+		8D83A5EF1B96BD9100A9C258 /* ArraysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D83A5EE1B96BD9100A9C258 /* ArraysTests.m */; };
 		8DE6BA9A1B93BFA200EB1E7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA991B93BFA200EB1E7A /* main.m */; };
 		8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA9C1B93BFA200EB1E7A /* AppDelegate.m */; };
 		8DE6BAA01B93BFA200EB1E7A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA9F1B93BFA200EB1E7A /* ViewController.m */; };
@@ -55,6 +57,9 @@
 		8D7381EF1B94F4DD003CA8F7 /* NumberBinaryTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberBinaryTree.h; sourceTree = "<group>"; };
 		8D7381F01B94F4DD003CA8F7 /* NumberBinaryTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberBinaryTree.m; sourceTree = "<group>"; };
 		8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberBinaryTreeTests.m; sourceTree = "<group>"; };
+		8D83A5EB1B96BD8500A9C258 /* Arrays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrays.h; sourceTree = "<group>"; };
+		8D83A5EC1B96BD8500A9C258 /* Arrays.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrays.m; sourceTree = "<group>"; };
+		8D83A5EE1B96BD9100A9C258 /* ArraysTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArraysTests.m; sourceTree = "<group>"; };
 		8DE6BA941B93BFA200EB1E7A /* Interview Preparation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Interview Preparation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE6BA981B93BFA200EB1E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DE6BA991B93BFA200EB1E7A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -132,6 +137,15 @@
 			name = Concurrency;
 			sourceTree = "<group>";
 		};
+		8D83A5EA1B96BD7C00A9C258 /* Arrays */ = {
+			isa = PBXGroup;
+			children = (
+				8D83A5EB1B96BD8500A9C258 /* Arrays.h */,
+				8D83A5EC1B96BD8500A9C258 /* Arrays.m */,
+			);
+			name = Arrays;
+			sourceTree = "<group>";
+		};
 		8DE6BA8B1B93BFA200EB1E7A = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +167,7 @@
 		8DE6BA961B93BFA200EB1E7A /* Interview Preparation */ = {
 			isa = PBXGroup;
 			children = (
+				8D83A5EA1B96BD7C00A9C258 /* Arrays */,
 				8D24D88D1B96231C0078157C /* Compare */,
 				8D24D8891B9622E20078157C /* Linked List */,
 				8D24D8831B961FFA0078157C /* General */,
@@ -182,6 +197,7 @@
 		8DE6BAB01B93BFA200EB1E7A /* Interview PreparationTests */ = {
 			isa = PBXGroup;
 			children = (
+				8D83A5EE1B96BD9100A9C258 /* ArraysTests.m */,
 				8DE6BAB31B93BFA200EB1E7A /* Interview_PreparationTests.m */,
 				8DE6BACB1B93C5E300EB1E7A /* BinaryTreeTests.m */,
 				8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */,
@@ -321,6 +337,7 @@
 				8DE6BAC91B93C23D00EB1E7A /* BinaryTree.m in Sources */,
 				8DE6BAA01B93BFA200EB1E7A /* ViewController.m in Sources */,
 				8D24D88C1B9622EB0078157C /* ListNode.m in Sources */,
+				8D83A5ED1B96BD8500A9C258 /* Arrays.m in Sources */,
 				8D43AEBB1B9532C3004F6E90 /* Concurrency.m in Sources */,
 				8D7381F11B94F4DD003CA8F7 /* NumberBinaryTree.m in Sources */,
 				8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */,
@@ -335,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D24D8881B9620510078157C /* GeneralTests.m in Sources */,
+				8D83A5EF1B96BD9100A9C258 /* ArraysTests.m in Sources */,
 				8DE6BACC1B93C5E300EB1E7A /* BinaryTreeTests.m in Sources */,
 				8D7381F81B94F935003CA8F7 /* NumberBinaryTreeTests.m in Sources */,
 				8DE6BAB41B93BFA200EB1E7A /* Interview_PreparationTests.m in Sources */,

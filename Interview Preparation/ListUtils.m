@@ -182,21 +182,20 @@
 
 + (ListNode *)recursiveReverseList:(ListNode *)list {
     if (!list) {
-        return nil; // Empty list
+        return nil;
     }
     if (!list.next) {
-        return list; // Single node
+        return list;
     }
-    // Grab the rest of the list
-    ListNode *next = list.next;
-    // Unlink this node
+    ListNode *rest = list.next;
+    // Detach the node
     list.next = nil;
-    // Reverse the rest of the list and grab the new head
-    ListNode *newHead = [[self class] recursiveReverseList:next];
-    // Re-link this node
-    next.next = list;
-    // Return the head
-    return newHead;
+    // Reversed list
+    ListNode *reversedList = [[self class] recursiveReverseList:rest];
+    // Link back in the node
+    rest.next = list;
+    
+    return reversedList;
 }
 
 + (ListNode *)reverseEveryKNodes:(NSUInteger)k onList:(ListNode *)list {
