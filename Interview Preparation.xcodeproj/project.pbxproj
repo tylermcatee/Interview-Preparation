@@ -18,6 +18,8 @@
 		8D7381F81B94F935003CA8F7 /* NumberBinaryTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7381F71B94F935003CA8F7 /* NumberBinaryTreeTests.m */; };
 		8D83A5ED1B96BD8500A9C258 /* Arrays.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D83A5EC1B96BD8500A9C258 /* Arrays.m */; };
 		8D83A5EF1B96BD9100A9C258 /* ArraysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D83A5EE1B96BD9100A9C258 /* ArraysTests.m */; };
+		8DB08A8F1B98CEDA005190D3 /* Heap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB08A8E1B98CEDA005190D3 /* Heap.m */; };
+		8DB08A911B98CFF3005190D3 /* HeapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB08A901B98CFF3005190D3 /* HeapTests.m */; };
 		8DE6BA9A1B93BFA200EB1E7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA991B93BFA200EB1E7A /* main.m */; };
 		8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA9C1B93BFA200EB1E7A /* AppDelegate.m */; };
 		8DE6BAA01B93BFA200EB1E7A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA9F1B93BFA200EB1E7A /* ViewController.m */; };
@@ -60,6 +62,9 @@
 		8D83A5EB1B96BD8500A9C258 /* Arrays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrays.h; sourceTree = "<group>"; };
 		8D83A5EC1B96BD8500A9C258 /* Arrays.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrays.m; sourceTree = "<group>"; };
 		8D83A5EE1B96BD9100A9C258 /* ArraysTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArraysTests.m; sourceTree = "<group>"; };
+		8DB08A8D1B98CEDA005190D3 /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
+		8DB08A8E1B98CEDA005190D3 /* Heap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Heap.m; sourceTree = "<group>"; };
+		8DB08A901B98CFF3005190D3 /* HeapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeapTests.m; sourceTree = "<group>"; };
 		8DE6BA941B93BFA200EB1E7A /* Interview Preparation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Interview Preparation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE6BA981B93BFA200EB1E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DE6BA991B93BFA200EB1E7A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -146,6 +151,15 @@
 			name = Arrays;
 			sourceTree = "<group>";
 		};
+		8DB08A8C1B98CECD005190D3 /* Heap */ = {
+			isa = PBXGroup;
+			children = (
+				8DB08A8D1B98CEDA005190D3 /* Heap.h */,
+				8DB08A8E1B98CEDA005190D3 /* Heap.m */,
+			);
+			name = Heap;
+			sourceTree = "<group>";
+		};
 		8DE6BA8B1B93BFA200EB1E7A = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +181,7 @@
 		8DE6BA961B93BFA200EB1E7A /* Interview Preparation */ = {
 			isa = PBXGroup;
 			children = (
+				8DB08A8C1B98CECD005190D3 /* Heap */,
 				8D83A5EA1B96BD7C00A9C258 /* Arrays */,
 				8D24D88D1B96231C0078157C /* Compare */,
 				8D24D8891B9622E20078157C /* Linked List */,
@@ -204,6 +219,7 @@
 				8D43AEBC1B953349004F6E90 /* ConcurrencyTests.m */,
 				8D24D8871B9620510078157C /* GeneralTests.m */,
 				8D24D8941B9627EA0078157C /* LinkedListTests.m */,
+				8DB08A901B98CFF3005190D3 /* HeapTests.m */,
 				8DE6BAB11B93BFA200EB1E7A /* Supporting Files */,
 			);
 			path = "Interview PreparationTests";
@@ -332,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DB08A8F1B98CEDA005190D3 /* Heap.m in Sources */,
 				8DE6BAD01B93E47A00EB1E7A /* NSMutableArray+Stack.m in Sources */,
 				8D24D8981B962C180078157C /* ListUtils.m in Sources */,
 				8DE6BAC91B93C23D00EB1E7A /* BinaryTree.m in Sources */,
@@ -358,6 +375,7 @@
 				8DE6BAB41B93BFA200EB1E7A /* Interview_PreparationTests.m in Sources */,
 				8D24D8951B9627EA0078157C /* LinkedListTests.m in Sources */,
 				8D43AEBD1B953349004F6E90 /* ConcurrencyTests.m in Sources */,
+				8DB08A911B98CFF3005190D3 /* HeapTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

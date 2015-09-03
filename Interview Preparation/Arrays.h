@@ -41,4 +41,11 @@
  */
 + (NSUInteger)minimumDistanceBetweenElementsOfArray:(NSArray *)array;
 
+/**
+ *  @method minimumDistanceInArray:between:and:
+ *  @discussion returns the minimum distance in the array between the two numbers.
+ *  if both numbers are not in the array, will return NSNotFound.
+ */
++ (NSUInteger)minimumDistanceInArray:(NSArray *)array between:(NSNumber *)number1 and:(NSNumber *)number2;
+
 @end

@@ -1,4 +1,4 @@
-//
+///Users/mcatee/code/Interview Preparation/Interview Preparation/Arrays.m
 //  ArraysTests.m
 //  Interview Preparation
 //
@@ -74,6 +74,15 @@
     XCTAssertEqual(1, [Arrays minimumDistanceBetweenElementsOfArray:testOne]);
     XCTAssertEqual(2, [Arrays minimumDistanceBetweenElementsOfArray:testTwo]);
     XCTAssertEqual(3, [Arrays minimumDistanceBetweenElementsOfArray:testThree]);
+}
+
+- (void)testMinimumDistanceBetweenNumbers {
+    NSArray *testArray = @[@1, @5, @3, @7, @2, @8, @3, @4, @5, @9, @9, @3, @1, @3, @2, @9];
+    XCTAssertEqual(4, [Arrays minimumDistanceInArray:testArray between:@4 and:@7]);
+    XCTAssertEqual(1, [Arrays minimumDistanceInArray:testArray between:@9 and:@3]);
+    XCTAssertEqual(NSNotFound, [Arrays minimumDistanceInArray:testArray between:@4 and:@101]);
+    XCTAssertEqual(NSNotFound, [Arrays minimumDistanceInArray:testArray between:@100 and:@1]);
+    XCTAssertEqual(NSNotFound, [Arrays minimumDistanceInArray:testArray between:@100 and:@101]);
 }
 
 @end

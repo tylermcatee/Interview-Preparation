@@ -144,4 +144,34 @@
     return minimumDistance;
 }
 
++ (NSUInteger)minimumDistanceInArray:(NSArray *)array between:(NSNumber *)number1 and:(NSNumber *)number2 {
+    NSUInteger minimum = NSNotFound;
+    NSNumber *lastEncounteredNumber;
+    NSUInteger lastEncounteredIndex = 0;
+    for (NSUInteger idx = 0; idx < array.count; idx++) {
+        if ([array[idx] compare:number1] == NSOrderedSame) {
+            // Found number1!
+            if (lastEncounteredNumber == number2) {
+                NSUInteger newDiff = idx - lastEncounteredIndex;
+                if (newDiff < minimum) {
+                    minimum = newDiff;
+                }
+            }
+            lastEncounteredNumber = number1;
+            lastEncounteredIndex = idx;
+        } else if ([array[idx] compare:number2] == NSOrderedSame) {
+            // Found number2!
+            if (lastEncounteredNumber == number1) {
+                NSUInteger newDiff = idx - lastEncounteredIndex;
+                if (newDiff < minimum) {
+                    minimum = newDiff;
+                }
+            }
+            lastEncounteredNumber = number2;
+            lastEncounteredIndex = idx;
+        }
+    }
+    return minimum;
+}
+
 @end
