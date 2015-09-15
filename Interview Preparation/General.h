@@ -7,9 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface General : NSObject
 
 + (NSNumber *)firstRepeatedNumberInArray:(NSArray *)array;
+
++ (BOOL)sortedArray:(NSArray *)array contains:(NSNumber *)number;
+
++ (NSString *)timeStringForSecondsPastMidnight:(NSUInteger)seconds;
+
++ (NSUInteger)numberOfElementsIn:(NSArray *)array withDifference:(NSUInteger)difference;
+
++ (BOOL)rectanglesOverlap:(CGRect)rect1 and:(CGRect)rect2;
 
 @end

@@ -20,6 +20,9 @@
 		8D83A5EF1B96BD9100A9C258 /* ArraysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D83A5EE1B96BD9100A9C258 /* ArraysTests.m */; };
 		8DB08A8F1B98CEDA005190D3 /* Heap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB08A8E1B98CEDA005190D3 /* Heap.m */; };
 		8DB08A911B98CFF3005190D3 /* HeapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB08A901B98CFF3005190D3 /* HeapTests.m */; };
+		8DCCCBC71BA0F0FF0081BFEB /* TMOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCCCBC61BA0F0FF0081BFEB /* TMOperationQueue.m */; };
+		8DD632291B9A21210040B613 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD632281B9A21210040B613 /* Cache.m */; };
+		8DD6322B1B9A23F00040B613 /* CacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD6322A1B9A23F00040B613 /* CacheTests.m */; };
 		8DE6BA9A1B93BFA200EB1E7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA991B93BFA200EB1E7A /* main.m */; };
 		8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA9C1B93BFA200EB1E7A /* AppDelegate.m */; };
 		8DE6BAA01B93BFA200EB1E7A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6BA9F1B93BFA200EB1E7A /* ViewController.m */; };
@@ -65,6 +68,11 @@
 		8DB08A8D1B98CEDA005190D3 /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
 		8DB08A8E1B98CEDA005190D3 /* Heap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Heap.m; sourceTree = "<group>"; };
 		8DB08A901B98CFF3005190D3 /* HeapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeapTests.m; sourceTree = "<group>"; };
+		8DCCCBC51BA0F0FF0081BFEB /* TMOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOperationQueue.h; sourceTree = "<group>"; };
+		8DCCCBC61BA0F0FF0081BFEB /* TMOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOperationQueue.m; sourceTree = "<group>"; };
+		8DD632271B9A21210040B613 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
+		8DD632281B9A21210040B613 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cache.m; sourceTree = "<group>"; };
+		8DD6322A1B9A23F00040B613 /* CacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTests.m; sourceTree = "<group>"; };
 		8DE6BA941B93BFA200EB1E7A /* Interview Preparation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Interview Preparation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE6BA981B93BFA200EB1E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DE6BA991B93BFA200EB1E7A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -142,6 +150,15 @@
 			name = Concurrency;
 			sourceTree = "<group>";
 		};
+		8D7F2C781B9A1F4100C826C7 /* LRUCache */ = {
+			isa = PBXGroup;
+			children = (
+				8DD632271B9A21210040B613 /* Cache.h */,
+				8DD632281B9A21210040B613 /* Cache.m */,
+			);
+			name = LRUCache;
+			sourceTree = "<group>";
+		};
 		8D83A5EA1B96BD7C00A9C258 /* Arrays */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +175,15 @@
 				8DB08A8E1B98CEDA005190D3 /* Heap.m */,
 			);
 			name = Heap;
+			sourceTree = "<group>";
+		};
+		8DCCCBC41BA0F0A60081BFEB /* TMOperationQueue */ = {
+			isa = PBXGroup;
+			children = (
+				8DCCCBC51BA0F0FF0081BFEB /* TMOperationQueue.h */,
+				8DCCCBC61BA0F0FF0081BFEB /* TMOperationQueue.m */,
+			);
+			name = TMOperationQueue;
 			sourceTree = "<group>";
 		};
 		8DE6BA8B1B93BFA200EB1E7A = {
@@ -181,6 +207,8 @@
 		8DE6BA961B93BFA200EB1E7A /* Interview Preparation */ = {
 			isa = PBXGroup;
 			children = (
+				8DCCCBC41BA0F0A60081BFEB /* TMOperationQueue */,
+				8D7F2C781B9A1F4100C826C7 /* LRUCache */,
 				8DB08A8C1B98CECD005190D3 /* Heap */,
 				8D83A5EA1B96BD7C00A9C258 /* Arrays */,
 				8D24D88D1B96231C0078157C /* Compare */,
@@ -220,6 +248,7 @@
 				8D24D8871B9620510078157C /* GeneralTests.m */,
 				8D24D8941B9627EA0078157C /* LinkedListTests.m */,
 				8DB08A901B98CFF3005190D3 /* HeapTests.m */,
+				8DD6322A1B9A23F00040B613 /* CacheTests.m */,
 				8DE6BAB11B93BFA200EB1E7A /* Supporting Files */,
 			);
 			path = "Interview PreparationTests";
@@ -359,6 +388,8 @@
 				8D7381F11B94F4DD003CA8F7 /* NumberBinaryTree.m in Sources */,
 				8DE6BA9D1B93BFA200EB1E7A /* AppDelegate.m in Sources */,
 				8DE6BAC61B93C1D800EB1E7A /* BinaryTreeNode.m in Sources */,
+				8DD632291B9A21210040B613 /* Cache.m in Sources */,
+				8DCCCBC71BA0F0FF0081BFEB /* TMOperationQueue.m in Sources */,
 				8DE6BA9A1B93BFA200EB1E7A /* main.m in Sources */,
 				8D24D8861B9620010078157C /* General.m in Sources */,
 			);
@@ -369,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D24D8881B9620510078157C /* GeneralTests.m in Sources */,
+				8DD6322B1B9A23F00040B613 /* CacheTests.m in Sources */,
 				8D83A5EF1B96BD9100A9C258 /* ArraysTests.m in Sources */,
 				8DE6BACC1B93C5E300EB1E7A /* BinaryTreeTests.m in Sources */,
 				8D7381F81B94F935003CA8F7 /* NumberBinaryTreeTests.m in Sources */,
